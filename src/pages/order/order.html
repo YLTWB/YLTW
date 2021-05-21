@@ -1,0 +1,38 @@
+﻿<ion-header>
+  <ion-navbar>
+    <ion-toolbar>
+      <ion-title>隐秘下单</ion-title>
+    </ion-toolbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>问题描述</ion-label>
+      <ion-textarea [(ngModel)]="order.problemContent"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>问题类别</ion-label>
+      <ion-select interface="action-sheet" [(ngModel)]="order.problemType">
+        <ion-option *ngFor="let type of problemTypeList" [value]="type">{{type}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>指定/排除导师</ion-label>
+      <ion-input type="search" [(ngModel)]="order.advisorList" (click)="selectAdvisor()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>指定/排除区域</ion-label>
+      <ion-select interface="action-sheet" [(ngModel)]="order.areaList" multiple="true" okText="确定" cancelText="取消">
+        <ion-option *ngFor="let area of areaList" [value]="area">{{area}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>打赏金额</ion-label>
+      <ion-input type="number" [(ngModel)]="order.amount"></ion-input>
+    </ion-item>
+
+  </ion-list>
+  <button ion-button full (click)="submit()">提交</button>
+</ion-content>
